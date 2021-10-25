@@ -1,0 +1,130 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Api Authenticate",
+    "description": "Api de autenticação para testar"
+  },
+  "host": "lit-stream-68081.herokuapp.com",
+  "basePath": "/",
+  "tags": [],
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "securityDefinitions": {
+    "api_key": {
+      "type": "apiKey",
+      "name": "api_key",
+      "in": "header"
+    }
+  },
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/users": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "description": "Endpoint para criar um usuário.",
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": "Jhon Doe"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "jhon@teste.com"
+                },
+                "password": {
+                  "type": "string",
+                  "example": "jhonteste"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/sessions": {
+      "post": {
+        "tags": [
+          "Session"
+        ],
+        "description": "Endpoint para logar um usuário.",
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "type": "string",
+                  "example": "jhon@teste.com"
+                },
+                "password": {
+                  "type": "string",
+                  "example": "jhonteste"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {},
+  "servers": [
+    {
+      "url": "http://localhost:3333/",
+      "description": "Development server",
+      "templates": {
+        "scheme": {
+          "enum": [
+            "http",
+            "https"
+          ],
+          "default": "https"
+        }
+      }
+    },
+    {
+      "url": "lit-stream-68081.herokuapp.com",
+      "description": "Production server",
+      "templates": {
+        "scheme": {
+          "enum": [
+            "http",
+            "https"
+          ],
+          "default": "https"
+        }
+      }
+    }
+  ]
+}
